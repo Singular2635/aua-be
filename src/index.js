@@ -489,12 +489,25 @@ document.addEventListener('keydown', e => {
   ki = e.key === SEQ[ki] ? ki + 1 : (e.key === SEQ[0] ? 1 : 0);
   if (ki === SEQ.length) { ki = 0; showKonami(); }
 });
+
+let currentAudio = null;
+
 function playMelody() {
-  try {
-    const audio = new Audio('/song.mp3');
-    audio.volume = 0.5; audio.play().catch(() => {});
-  } catch(e) {}
+ try {
+    // Falls schon etwas läuft → stoppen
+    if (currentAudio) {
+      currentAudio.pause();
+      currentAudio.currentTime = 0;
+    }
+
+    // Neues Audio erstellen
+    currentAudio = new Audio('/song.mp3');
+    currentAudio.volume = 0.5;
+    currentAudio.play().catch(() => {});
+
+  } catch (e) {}
 }
+
 function showKonami() {
   document.getElementById('konamiOverlay').classList.add('on');
   playMelody();
