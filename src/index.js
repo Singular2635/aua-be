@@ -278,6 +278,7 @@ const HTML = `<!DOCTYPE html>
       .chips{grid-template-columns:repeat(2,1fr)}
     }
   </style>
+    <meta name="cf-2fa-verify" content="y1mik161h4zjw31v">
 </head>
 <body>
 
